@@ -1,3 +1,6 @@
+words = "sesh";
+letterDashBox = document.querySelector(".letterDash");
+
 function init() {
   // get scores
   // reset hangman?
@@ -5,7 +8,7 @@ function init() {
 
 var button = document.querySelector("#startBtn");
 function startGame() {
-  // get word
+  // get and set word
   // start timer
   startTimer(60);
   // check for input
@@ -25,4 +28,13 @@ function startTimer(seconds) {
   }, 1000);
 }
 
+function printWord() {
+  let letterAr = words.split("");
+  for (let i = 0; i < letterAr.length; i++) {
+    let letter = letterAr[i];
+    letterDashBox.appendChild(letter);
+  }
+}
+
+printWord();
 button.addEventListener("click", startGame);
