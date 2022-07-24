@@ -1,6 +1,6 @@
-words = "sesh";
+words = "sheesh";
 var letterAr = words.split("");
-letterDashBox = document.querySelector(".letterDash");
+const letterDashBox = document.querySelector(".letterDash");
 
 function init() {
   // get scores
@@ -37,7 +37,7 @@ function printWord() {
   for (let i = 0; i < letterAr.length; i++) {
     // loop creating individual sections with relative class and ids
     // for the split word
-    el = document.createElement("section");
+    let el = document.createElement("section");
     let classes = document.createAttribute("class");
     classes.value = letterAr[i];
     el.setAttributeNode(classes);
@@ -47,23 +47,22 @@ function printWord() {
     el.setAttributeNode(ids);
     letterId++;
     //
-    el.textContent = "   _   ";
+    el.textContent = "_";
     letterDashBox.appendChild(el);
   }
 }
 
 function checkInputs() {
+  // check keyboard input and call function
   document.addEventListener("keydown", keydownAction);
   function keydownAction(event) {
-    for (let i = 0; i < letterAr.length; i++)
-      if (event.key == letterAr[i]) {
-        console.log("yes", letterAr[i]);
-        var class1 = document.querySelector(letterAr);
-        console.log(class1);
-        letterContent = "   " + letterAr[i] + "   ";
-        console.log(letterContent + "yes");
-        class1.textContent = letterContent;
-      }
+    // destruct object
+    const { key } = event;
+    // early exit if keypress is not in word
+    if (!letterAr.includes(key)) return;
+    // find every letter class equal to keypress
+    const letterClass = letterDashBox.getElementsByClassName(key);
+    Array.from(letterClass).forEach((letterEl) => (letterEl.textContent = key));
   }
 }
 var button = document.querySelector("#startBtn");
