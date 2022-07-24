@@ -61,7 +61,7 @@ function checkInputs() {
         var class1 = document.querySelector(letterAr);
         console.log(class1);
         letterContent = "   " + letterAr[i] + "   ";
-        console.log(letterContent);
+        console.log(letterContent + "yes");
         class1.textContent = letterContent;
       }
   }
