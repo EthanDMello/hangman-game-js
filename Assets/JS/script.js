@@ -13,6 +13,7 @@ function startGame() {
   // start timer
   startTimer(60);
   // check for input
+  tick();
   // change hangman or word being guessed
 }
 
@@ -29,27 +30,20 @@ function startTimer(seconds) {
   }, 1000);
 }
 
+const hiddenLetterPlaceHolder = "_";
 function printWord() {
   // adds letter from as blanks to HTML body
-  let letterAr = words.split("");
-  let letterId = 0;
+  const letterAr = words.split("");
 
-  for (let i = 0; i < letterAr.length; i++) {
-    // loop creating individual sections with relative class and ids
-    // for the split word
+  letterAr.forEach((letter) => {
+    // loop creating individual sections with relative class for individual letters
     let el = document.createElement("section");
-    let classes = document.createAttribute("class");
-    classes.value = letterAr[i];
-    el.setAttributeNode(classes);
-    //
-    let ids = document.createAttribute("id");
-    ids.value = letterId;
-    el.setAttributeNode(ids);
-    letterId++;
-    //
-    el.textContent = "_";
+    el.classList.add(letter);
+    // adding blank letter placeholders to content
+    el.textContent = hiddenLetterPlaceHolder;
+    // adding new section to html
     letterDashBox.appendChild(el);
-  }
+  });
 }
 
 function checkInputs() {
@@ -60,7 +54,7 @@ function checkInputs() {
     const { key } = event;
     // early exit if keypress is not in word
     if (!letterAr.includes(key)) return;
-    // find every letter class equal to keypress
+    // find every letter class equal to keypress and reveal letter in HTML
     const letterClass = letterDashBox.getElementsByClassName(key);
     Array.from(letterClass).forEach((letterEl) => (letterEl.textContent = key));
   }
