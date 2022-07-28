@@ -27,7 +27,8 @@ function startTimer(seconds) {
       clearInterval(timerStart);
       console.log("out of time");
     }
-  }, 1000);
+    checkInputs();
+  }, 500);
 }
 
 const hiddenLetterPlaceHolder = "_";
@@ -61,4 +62,3 @@ function checkInputs() {
 }
 var button = document.querySelector("#startBtn");
 button.addEventListener("click", startGame);
-checkInputs();
