@@ -1,7 +1,3 @@
-words = "sheesh";
-var letterAr = words.split("");
-const letterDashBox = document.querySelector(".letterDash");
-
 function init() {
   // get scores
   // reset hangman?
@@ -13,8 +9,8 @@ function startGame() {
   // start timer
   startTimer(60);
   // check for input
-  tick();
   // change hangman or word being guessed
+  // ^^ happening in start timer
 }
 
 function startTimer(seconds) {
@@ -60,5 +56,12 @@ function checkInputs() {
     Array.from(letterClass).forEach((letterEl) => (letterEl.textContent = key));
   }
 }
+
+function wrongGuess() {}
+
 var button = document.querySelector("#startBtn");
 button.addEventListener("click", startGame);
+
+words = "sheesh";
+var letterAr = words.split("");
+const letterDashBox = document.querySelector(".letterDash");
