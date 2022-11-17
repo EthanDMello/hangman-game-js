@@ -43,18 +43,22 @@ function printWord() {
   });
 }
 
+function keydownAction(event) {
+  // destruct object
+  const { key } = event;
+  // early exit if keypress is not in word
+  if (!letterAr.includes(key)) return;
+  // find every letter class equal to keypress and reveal letter in HTML
+  const letterClass = letterDashBox.getElementsByClassName(key);
+  Array.from(letterClass).forEach((letterEl) => (letterEl.textContent = key));
+}
+
+function checkEndGame() {}
+
 function checkInputs() {
   // check keyboard input and call function
   document.addEventListener("keydown", keydownAction);
-  function keydownAction(event) {
-    // destruct object
-    const { key } = event;
-    // early exit if keypress is not in word
-    if (!letterAr.includes(key)) return;
-    // find every letter class equal to keypress and reveal letter in HTML
-    const letterClass = letterDashBox.getElementsByClassName(key);
-    Array.from(letterClass).forEach((letterEl) => (letterEl.textContent = key));
-  }
+  checkEndGame();
 }
 
 function wrongGuess() {}
